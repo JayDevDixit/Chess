@@ -1,0 +1,116 @@
+:root {
+  --block-size: 9vmin;
+  --saperation: 0vmin;
+  --piece-size: calc(var(--block-size) - 2vmin);
+  /* --color-1: #964d22; */
+  --color-1:linear-gradient(to top right, #f7ba2b 0%, #ea5358 100%);
+  --color-3:linear-gradient(to bottom right,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  --color-2:antiquewhite;
+  --color-4:linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
+  --color-5:linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+  --color-6:linear-gradient(to bottom left, rgb(0, 183, 255), rgb(241, 81, 241));
+
+}
+* {
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background:linear-gradient(163deg, #00ff75 0%, #3700ff 100%); */
+  background: var(--color-3);
+}
+#board {
+  height: calc(8 * var(--block-size) + var(--saperation));
+  width: calc(8 * var(--block-size) + var(--saperation));
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+#rotator{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-1);
+  height: calc(8 * var(--block-size) + var(--saperation) + 2vmin);
+  width: calc(8 * var(--block-size) + var(--saperation) + 2vmin);
+  overflow: hidden;
+  position: relative;
+  border-radius: 1vmin;
+}
+
+#rotator::before{
+  content: "";
+  display: block;
+  position: absolute;
+  height: 150%;
+  width: 60%;
+  margin: auto;
+  animation: rotate 2s infinite linear;
+  background: var(--color-6);
+  z-index: -5;
+}
+
+.block {
+  height: var(--block-size);
+  width: var(--block-size);
+  /* border-radius: 1vmin; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* z-index: 3; */
+  /* overflow: visible; */
+
+}
+
+.black {
+  background: var(--color-6);
+}
+.white {
+  background: var(--color-1);
+}
+p {
+  font-size: var(--piece-size);
+  cursor: pointer;
+  /* background-color: red; */
+  /* animation-name: rotate; */
+  position: relative;
+}
+#killed_white_container,
+#killed_black_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(8 * var(--block-size) + var(--saperation));
+  background-color:pink;
+  height: 10vh;
+  flex-wrap: wrap;
+  margin: 10px;
+  border-radius: 5vmin;
+  /* display: none; */
+
+}
+
+#choose {
+  position: absolute;
+  background-color: yellow;
+  height: 10vmin;
+  width: 40vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5vmin;
+  visibility: hidden;
+  z-index: 2;
+}
+
+@keyframes rotate {
+  100%{
+    transform: rotate(360deg);
+  }
+}
